@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لغتي الجميلة - الصف الأول الابتدائي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', 'Amiri', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.6); }
+        }
+        
+        .letter-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .letter-card:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .interactive-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interactive-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .interactive-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .interactive-btn:hover::before {
+            left: 100%;
+        }
+        
+        .star {
+            animation: twinkle 1.5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .rainbow-text {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s linear infinite;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            pointer-events: none;
+            animation: watermarkGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes watermarkGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- خلفية متحركة -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="star absolute top-10 left-10 text-yellow-300 text-2xl">⭐</div>
+        <div class="star absolute top-20 right-20 text-yellow-300 text-xl">✨</div>
+        <div class="star absolute top-40 left-1/4 text-yellow-300 text-lg">🌟</div>
+        <div class="star absolute bottom-20 right-10 text-yellow-300 text-2xl">⭐</div>
+        <div class="star absolute bottom-40 left-20 text-yellow-300 text-xl">✨</div>
+    </div>
+
+    <!-- العلامة المائية -->
+    <div class="watermark">
+        👨‍🏫 الأستاذ عبدالرحمن الحجيلي
+    </div>
+
+    <div class="container mx-auto px-4 py-8 relative z-10">
+        <!-- الترويسة -->
+        <header class="text-center mb-12">
+            <div class="floating">
+                <h1 class="text-6xl font-bold text-white mb-4 rainbow-text">لغتي الجميلة</h1>
+            </div>
+            <div class="slide-in" style="animation-delay: 0.3s;">
+                <h2 class="text-3xl font-semibold text-yellow-200 mb-2">الصف الأول الابتدائي</h2>
+                <p class="text-xl text-blue-100">الفصل الدراسي الأول - العام الدراسي 1447هـ</p>
+            </div>
+            <div class="bounce mt-6">
+                <div class="text-6xl">📚</div>
+            </div>
+        </header>
+
+        <!-- قائمة الدروس -->
+        <div id="lessonMenu" class="max-w-4xl mx-auto">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8 pulse-glow">
+                <h3 class="text-4xl font-bold text-white text-center mb-8">🎯 اختر درسك</h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <button onclick="startLesson('letters')" class="interactive-btn bg-gradient-to-r from-pink-500 to-purple-600 text-white p-6 rounded-2xl text-2xl font-bold">
+                        <div class="text-4xl mb-2">🔤</div>
+                        الدرس الأول: الحروف الهجائية
+                    </button>
+                    
+                    <button onclick="startLesson('words')" class="interactive-btn bg-gradient-to-r from-green-500 to-blue-600 text-white p-6 rounded-2xl text-2xl font-bold">
+                        <div class="text-4xl mb-2">📝</div>
+                        الدرس الثاني: تكوين الكلمات
+                    </button>
+                    
+                    <button onclick="startLesson('reading')" class="interactive-btn bg-gradient-to-r from-orange-500 to-red-600 text-white p-6 rounded-2xl text-2xl font-bold">
+                        <div class="text-4xl mb-2">📖</div>
+                        الدرس الثالث: القراءة البسيطة
+                    </button>
+                    
+                    <button onclick="startLesson('writing')" class="interactive-btn bg-gradient-to-r from-teal-500 to-cyan-600 text-white p-6 rounded-2xl text-2xl font-bold">
+                        <div class="text-4xl mb-2">✏️</div>
+                        الدرس الرابع: الكتابة والخط
+                    </button>
+                    
+                    <button onclick="startLesson('sounds')" class="interactive-btn bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6 rounded-2xl text-2xl font-bold">
+                        <div class="text-4xl mb-2">🔊</div>
+                        الدرس الخامس: أصوات الحروف
+                    </button>
+                    
+                    <button onclick="startLesson('sentences')" class="interactive-btn bg-gradient-to-r from-rose-500 to-pink-600 text-white p-6 rounded-2xl text-2xl font-bold">
+                        <div class="text-4xl mb-2">📚</div>
+                        الدرس السادس: الجمل البسيطة
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- درس الحروف -->
+        <div id="lettersLesson" class="hidden max-w-6xl mx-auto">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-5xl font-bold text-white mb-4">🔤 الحروف الهجائية</h3>
+                    <p class="text-2xl text-yellow-200">تعلم الحروف العربية بطريقة ممتعة!</p>
+                </div>
+                
+                <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 mb-8">
+                    <div class="letter-card bg-gradient-to-br from-red-400 to-pink-500 p-4 rounded-xl text-center text-white" onclick="playLetterSound('أ')">
+                        <div class="text-4xl font-bold mb-2">أ</div>
+                        <div class="text-sm">ألف</div>
+                    </div>
+                    <div class="letter-card bg-gradient-to-br from-blue-400 to-indigo-500 p-4 rounded-xl text-center text-white" onclick="playLetterSound('ب')">
+                        <div class="text-4xl font-bold mb-2">ب</div>
+                        <div class="text-sm">باء</div>
+                    </div>
+                    <div class="letter-card bg-gradient-to-br from-green-400 to-emerald-500 p-4 rounded-xl text-center text-white" onclick="playLetterSound('ت')">
+                        <div class="text-4xl font-bold mb-2">ت</div>
+                        <div class="text-sm">تاء</div>
+                    </div>
+                    <div class="letter-card bg-gradient-to-br from-yellow-400 to-orange-500 p-4 rounded-xl text-center text-white" onclick="playLetterSound('ث')">
+                        <div class="text-4xl font-bold mb-2">ث</div>
+                        <div class="text-sm">ثاء</div>
+                    </div>
+                    <div class="letter-card bg-gradient-to-br from-purple-400 to-violet-500 p-4 rounded-xl text-center text-white" onclick="playLetterSound('ج')">
+                        <div class="text-4xl font-bold mb-2">ج</div>
+                        <div class="text-sm">جيم</div>
+                    </div>
+                    <div class="letter-card bg-gradient-to-br from-teal-400 to-cyan-500 p-4 rounded-xl text-center text-white" onclick="playLetterSound('ح')">
+                        <div class="text-4xl font-bold mb-2">ح</div>
+                        <div class="text-sm">حاء</div>
+                    </div>
+                    <div class="letter-card bg-gradient-to-br from-rose-400 to-pink-500 p-4 rounded-xl text-center text-white" onclick="playLetterSound('خ')">
+                        <div class="text-4xl font-bold mb-2">خ</div>
+                        <div class="text-sm">خاء</div>
+                    </div>
+                    <div class="letter-card bg-gradient-to-br from-amber-400 to-yellow-500 p-4 rounded-xl text-center text-white" onclick="playLetterSound('د')">
+                        <div class="text-4xl font-bold mb-2">د</div>
+                        <div class="text-sm">دال</div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div id="letterDisplay" class="bg-white rounded-2xl p-8 mb-6 shadow-lg">
+                        <div class="text-8xl font-bold text-gray-800 mb-4">أ</div>
+                        <div class="text-3xl text-gray-600">اضغط على أي حرف لتعلمه!</div>
+                    </div>
+                    
+                    <button onclick="goBack()" class="interactive-btn bg-gradient-to-r from-gray-500 to-gray-700 text-white px-8 py-4 rounded-xl text-xl font-bold mr-4">
+                        ← العودة للقائمة
+                    </button>
+                    
+                    <button onclick="startQuiz()" class="interactive-btn bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-xl font-bold">
+                        🎯 اختبر نفسك
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- درس الكلمات -->
+        <div id="wordsLesson" class="hidden max-w-6xl mx-auto">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-5xl font-bold text-white mb-4">📝 تكوين الكلمات</h3>
+                    <p class="text-2xl text-yellow-200">تعلم كيفية تكوين الكلمات من الحروف!</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-6xl mb-4">🐱</div>
+                        <div class="text-4xl font-bold text-gray-800 mb-2">قِطَّة</div>
+                        <div class="text-lg text-gray-600">ق + ط + ة</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-6xl mb-4">🏠</div>
+                        <div class="text-4xl font-bold text-gray-800 mb-2">بَيْت</div>
+                        <div class="text-lg text-gray-600">ب + ي + ت</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-6xl mb-4">🌸</div>
+                        <div class="text-4xl font-bold text-gray-800 mb-2">وَرْدَة</div>
+                        <div class="text-lg text-gray-600">و + ر + د + ة</div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="goBack()" class="interactive-btn bg-gradient-to-r from-gray-500 to-gray-700 text-white px-8 py-4 rounded-xl text-xl font-bold">
+                        ← العودة للقائمة
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- درس القراءة -->
+        <div id="readingLesson" class="hidden max-w-6xl mx-auto">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-5xl font-bold text-white mb-4">📖 القراءة البسيطة</h3>
+                    <p class="text-2xl text-yellow-200">تعلم قراءة الجمل البسيطة!</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 mb-8 shadow-lg">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold text-gray-800 mb-6 leading-relaxed">
+                            هَذَا بَيْتٌ جَمِيل
+                        </div>
+                        <div class="text-2xl text-gray-600 mb-4">اقرأ الجملة بصوت عالٍ</div>
+                        <div class="text-6xl">🏡</div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="goBack()" class="interactive-btn bg-gradient-to-r from-gray-500 to-gray-700 text-white px-8 py-4 rounded-xl text-xl font-bold">
+                        ← العودة للقائمة
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- درس الكتابة -->
+        <div id="writingLesson" class="hidden max-w-6xl mx-auto">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-5xl font-bold text-white mb-4">✏️ الكتابة والخط</h3>
+                    <p class="text-2xl text-yellow-200">تعلم كتابة الحروف بخط جميل!</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 mb-8 shadow-lg">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl font-bold text-gray-800 mb-4">أ</div>
+                        <p class="text-xl text-gray-600">تدرب على كتابة حرف الألف</p>
+                    </div>
+                    
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                        <div class="text-8xl text-gray-200 font-bold">أ أ أ</div>
+                        <p class="text-lg text-gray-500 mt-4">اكتب الحرف هنا (تدريب بصري)</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="goBack()" class="interactive-btn bg-gradient-to-r from-gray-500 to-gray-700 text-white px-8 py-4 rounded-xl text-xl font-bold">
+                        ← العودة للقائمة
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- درس أصوات الحروف -->
+        <div id="soundsLesson" class="hidden max-w-6xl mx-auto">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-5xl font-bold text-white mb-4">🔊 أصوات الحروف</h3>
+                    <p class="text-2xl text-yellow-200">تعلم كيف تنطق الحروف بشكل صحيح!</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="playSound('أ')">
+                        <div class="text-6xl font-bold text-gray-800 mb-4">أ</div>
+                        <div class="text-2xl text-gray-600 mb-2">أَ - أِ - أُ</div>
+                        <div class="text-lg text-blue-600">🔊 اضغط للاستماع</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="playSound('ب')">
+                        <div class="text-6xl font-bold text-gray-800 mb-4">ب</div>
+                        <div class="text-2xl text-gray-600 mb-2">بَ - بِ - بُ</div>
+                        <div class="text-lg text-blue-600">🔊 اضغط للاستماع</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="playSound('ت')">
+                        <div class="text-6xl font-bold text-gray-800 mb-4">ت</div>
+                        <div class="text-2xl text-gray-600 mb-2">تَ - تِ - تُ</div>
+                        <div class="text-lg text-blue-600">🔊 اضغط للاستماع</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="playSound('ث')">
+                        <div class="text-6xl font-bold text-gray-800 mb-4">ث</div>
+                        <div class="text-2xl text-gray-600 mb-2">ثَ - ثِ - ثُ</div>
+                        <div class="text-lg text-blue-600">🔊 اضغط للاستماع</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="playSound('ج')">
+                        <div class="text-6xl font-bold text-gray-800 mb-4">ج</div>
+                        <div class="text-2xl text-gray-600 mb-2">جَ - جِ - جُ</div>
+                        <div class="text-lg text-blue-600">🔊 اضغط للاستماع</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="playSound('ح')">
+                        <div class="text-6xl font-bold text-gray-800 mb-4">ح</div>
+                        <div class="text-2xl text-gray-600 mb-2">حَ - حِ - حُ</div>
+                        <div class="text-lg text-blue-600">🔊 اضغط للاستماع</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 mb-8 shadow-lg">
+                    <div id="soundDisplay" class="text-center">
+                        <div class="text-8xl mb-4">🎵</div>
+                        <div class="text-2xl text-gray-800">اضغط على أي حرف لسماع صوته!</div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="goBack()" class="interactive-btn bg-gradient-to-r from-gray-500 to-gray-700 text-white px-8 py-4 rounded-xl text-xl font-bold">
+                        ← العودة للقائمة
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- درس الجمل البسيطة -->
+        <div id="sentencesLesson" class="hidden max-w-6xl mx-auto">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-5xl font-bold text-white mb-4">📚 الجمل البسيطة</h3>
+                    <p class="text-2xl text-yellow-200">تعلم قراءة وفهم الجمل البسيطة!</p>
+                </div>
+                
+                <div class="space-y-6 mb-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🐱</div>
+                            <div class="text-4xl font-bold text-gray-800 mb-4">هَذِهِ قِطَّةٌ جَمِيلَة</div>
+                            <div class="text-xl text-gray-600">اقرأ الجملة بصوت عالٍ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🏠</div>
+                            <div class="text-4xl font-bold text-gray-800 mb-4">أَسْكُنُ فِي بَيْتٍ كَبِير</div>
+                            <div class="text-xl text-gray-600">اقرأ الجملة بصوت عالٍ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">📚</div>
+                            <div class="text-4xl font-bold text-gray-800 mb-4">أُحِبُّ الْقِرَاءَة كَثِيرًا</div>
+                            <div class="text-xl text-gray-600">اقرأ الجملة بصوت عالٍ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🌞</div>
+                            <div class="text-4xl font-bold text-gray-800 mb-4">الشَّمْسُ مُشْرِقَةٌ الْيَوْم</div>
+                            <div class="text-xl text-gray-600">اقرأ الجملة بصوت عالٍ</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="startSentenceQuiz()" class="interactive-btn bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-xl font-bold mr-4">
+                        🎯 اختبار الجمل
+                    </button>
+                    <button onclick="goBack()" class="interactive-btn bg-gradient-to-r from-gray-500 to-gray-700 text-white px-8 py-4 rounded-xl text-xl font-bold">
+                        ← العودة للقائمة
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- اختبار الحروف -->
+        <div id="quizSection" class="hidden max-w-4xl mx-auto">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-4xl font-bold text-white mb-4">🎯 اختبار الحروف</h3>
+                    <p class="text-xl text-yellow-200">اختر الحرف الصحيح!</p>
+                </div>
+                
+                <div id="quizContent" class="text-center">
+                    <div class="bg-white rounded-2xl p-8 mb-6 shadow-lg">
+                        <div class="text-8xl mb-6">🐱</div>
+                        <div class="text-2xl text-gray-800 mb-6">ما هو الحرف الأول في كلمة "قطة"؟</div>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <button onclick="checkAnswer('ق', true)" class="interactive-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl text-3xl font-bold">ق</button>
+                            <button onclick="checkAnswer('ك', false)" class="interactive-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl text-3xl font-bold">ك</button>
+                            <button onclick="checkAnswer('ط', false)" class="interactive-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl text-3xl font-bold">ط</button>
+                            <button onclick="checkAnswer('ت', false)" class="interactive-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl text-3xl font-bold">ت</button>
+                        </div>
+                    </div>
+                    
+                    <div id="quizResult" class="hidden mb-6">
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl text-xl font-bold">
+                            🎉 أحسنت! إجابة صحيحة!
+                        </div>
+                    </div>
+                    
+                    <button onclick="goBack()" class="interactive-btn bg-gradient-to-r from-gray-500 to-gray-700 text-white px-8 py-4 rounded-xl text-xl font-bold">
+                        ← العودة للدرس
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startLesson(lessonType) {
+            // إخفاء القائمة الرئيسية
+            document.getElementById('lessonMenu').classList.add('hidden');
+            
+            // إظهار الدرس المحدد
+            const lessons = ['lettersLesson', 'wordsLesson', 'readingLesson', 'writingLesson', 'soundsLesson', 'sentencesLesson'];
+            lessons.forEach(lesson => {
+                document.getElementById(lesson).classList.add('hidden');
+            });
+            
+            document.getElementById(lessonType + 'Lesson').classList.remove('hidden');
+            document.getElementById(lessonType + 'Lesson').classList.add('fade-in');
+        }
+        
+        function goBack() {
+            // إخفاء جميع الدروس
+            const lessons = ['lettersLesson', 'wordsLesson', 'readingLesson', 'writingLesson', 'soundsLesson', 'sentencesLesson', 'quizSection'];
+            lessons.forEach(lesson => {
+                document.getElementById(lesson).classList.add('hidden');
+            });
+            
+            // إظهار القائمة الرئيسية
+            document.getElementById('lessonMenu').classList.remove('hidden');
+            document.getElementById('lessonMenu').classList.add('fade-in');
+        }
+        
+        function playLetterSound(letter) {
+            // تحديث عرض الحرف
+            document.getElementById('letterDisplay').innerHTML = `
+                <div class="text-8xl font-bold text-gray-800 mb-4">${letter}</div>
+                <div class="text-3xl text-gray-600">حرف ${letter}</div>
+                <div class="text-lg text-gray-500 mt-2">ممتاز! لقد اخترت حرف ${letter}</div>
+            `;
+            
+            // تشغيل صوت الحرف
+            playLetterAudio(letter);
+            
+            // إضافة تأثير بصري
+            document.getElementById('letterDisplay').classList.add('pulse-glow');
+            setTimeout(() => {
+                document.getElementById('letterDisplay').classList.remove('pulse-glow');
+            }, 1000);
+        }
+        
+        function playLetterAudio(letter) {
+            // إنشاء صوت الحرف باستخدام Web Speech API
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(letter);
+                utterance.lang = 'ar-SA'; // اللغة العربية السعودية
+                utterance.rate = 0.7; // سرعة بطيئة للوضوح
+                utterance.pitch = 1.2; // نبرة أعلى قليلاً
+                utterance.volume = 1; // أقصى صوت
+                
+                // البحث عن صوت عربي
+                const voices = speechSynthesis.getVoices();
+                const arabicVoice = voices.find(voice => 
+                    voice.lang.includes('ar') || 
+                    voice.name.includes('Arabic') ||
+                    voice.name.includes('عربي')
+                );
+                
+                if (arabicVoice) {
+                    utterance.voice = arabicVoice;
+                }
+                
+                speechSynthesis.speak(utterance);
+            }
+        }
+        
+        function playCelebrationSound() {
+            // تشغيل صوت الاحتفال
+            if ('speechSynthesis' in window) {
+                const celebrationPhrases = [
+                    'أحسنت!', 
+                    'ممتاز!', 
+                    'رائع!', 
+                    'مبروك!',
+                    'عظيم!'
+                ];
+                
+                const randomPhrase = celebrationPhrases[Math.floor(Math.random() * celebrationPhrases.length)];
+                const utterance = new SpeechSynthesisUtterance(randomPhrase);
+                utterance.lang = 'ar-SA';
+                utterance.rate = 0.8;
+                utterance.pitch = 1.3;
+                utterance.volume = 1;
+                
+                const voices = speechSynthesis.getVoices();
+                const arabicVoice = voices.find(voice => 
+                    voice.lang.includes('ar') || 
+                    voice.name.includes('Arabic')
+                );
+                
+                if (arabicVoice) {
+                    utterance.voice = arabicVoice;
+                }
+                
+                speechSynthesis.speak(utterance);
+            }
+            
+            // إضافة تأثير صوتي بديل باستخدام Web Audio API
+            playBeepSound();
+        }
+        
+        function playBeepSound() {
+            // إنشاء صوت تنبيه جميل للاحتفال
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // نغمة احتفالية متدرجة
+            const frequencies = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            
+            frequencies.forEach((freq, index) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.1 + index * 0.1);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3 + index * 0.1);
+                
+                oscillator.start(audioContext.currentTime + index * 0.1);
+                oscillator.stop(audioContext.currentTime + 0.3 + index * 0.1);
+            });
+        }
+        
+        function startQuiz() {
+            document.getElementById('lettersLesson').classList.add('hidden');
+            document.getElementById('quizSection').classList.remove('hidden');
+            document.getElementById('quizSection').classList.add('fade-in');
+        }
+        
+        function checkAnswer(selectedLetter, isCorrect) {
+            const resultDiv = document.getElementById('quizResult');
+            
+            if (isCorrect) {
+                resultDiv.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl text-xl font-bold">
+                        🎉 أحسنت! إجابة صحيحة! الحرف هو "${selectedLetter}"
+                    </div>
+                `;
+                resultDiv.classList.remove('hidden');
+                
+                // إضافة تأثيرات الاحتفال
+                createConfetti();
+                playCelebrationSound();
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl text-xl font-bold">
+                        😊 حاول مرة أخرى! الإجابة الصحيحة هي "ق"
+                    </div>
+                `;
+                resultDiv.classList.remove('hidden');
+            }
+        }
+        
+        function createConfetti() {
+            // إنشاء تأثير الاحتفال
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['🎉', '⭐', '🌟', '✨'][Math.floor(Math.random() * 4)];
+                confetti.style.position = 'fixed';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.fontSize = '20px';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // إضافة CSS للتأثيرات
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        function playSound(letter) {
+            // تحديث عرض الصوت
+            document.getElementById('soundDisplay').innerHTML = `
+                <div class="text-8xl mb-4">${letter}</div>
+                <div class="text-3xl text-gray-800 mb-2">صوت حرف ${letter}</div>
+                <div class="text-xl text-blue-600">🔊 يتم تشغيل الصوت...</div>
+                <div class="text-lg text-gray-500 mt-2">تدرب على نطق الحرف بوضوح</div>
+            `;
+            
+            // تشغيل صوت الحرف مع الحركات
+            playLetterWithHarakat(letter);
+            
+            // إضافة تأثير بصري
+            document.getElementById('soundDisplay').classList.add('pulse-glow');
+            setTimeout(() => {
+                document.getElementById('soundDisplay').classList.remove('pulse-glow');
+            }, 1500);
+        }
+        
+        function playLetterWithHarakat(letter) {
+            // تشغيل الحرف مع الحركات الثلاث
+            if ('speechSynthesis' in window) {
+                const harakat = ['َ', 'ِ', 'ُ']; // فتحة، كسرة، ضمة
+                
+                harakat.forEach((haraka, index) => {
+                    setTimeout(() => {
+                        const letterWithHaraka = letter + haraka;
+                        const utterance = new SpeechSynthesisUtterance(letterWithHaraka);
+                        utterance.lang = 'ar-SA';
+                        utterance.rate = 0.6;
+                        utterance.pitch = 1.1;
+                        utterance.volume = 1;
+                        
+                        const voices = speechSynthesis.getVoices();
+                        const arabicVoice = voices.find(voice => 
+                            voice.lang.includes('ar') || 
+                            voice.name.includes('Arabic')
+                        );
+                        
+                        if (arabicVoice) {
+                            utterance.voice = arabicVoice;
+                        }
+                        
+                        speechSynthesis.speak(utterance);
+                    }, index * 800); // تأخير بين كل حركة
+                });
+            }
+        }
+        
+        function startSentenceQuiz() {
+            // إخفاء درس الجمل
+            document.getElementById('sentencesLesson').classList.add('hidden');
+            
+            // إنشاء اختبار الجمل
+            const quizContent = document.getElementById('quizContent');
+            quizContent.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 mb-6 shadow-lg">
+                    <div class="text-6xl mb-6">🏠</div>
+                    <div class="text-2xl text-gray-800 mb-6">أكمل الجملة: "أسكن في _____ كبير"</div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button onclick="checkSentenceAnswer('بيت', true)" class="interactive-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl text-2xl font-bold">بيت</button>
+                        <button onclick="checkSentenceAnswer('سيارة', false)" class="interactive-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl text-2xl font-bold">سيارة</button>
+                        <button onclick="checkSentenceAnswer('كتاب', false)" class="interactive-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl text-2xl font-bold">كتاب</button>
+                        <button onclick="checkSentenceAnswer('قلم', false)" class="interactive-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl text-2xl font-bold">قلم</button>
+                    </div>
+                </div>
+                
+                <div id="quizResult" class="hidden mb-6">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl text-xl font-bold">
+                        🎉 أحسنت! إجابة صحيحة!
+                    </div>
+                </div>
+                
+                <button onclick="goBackToSentences()" class="interactive-btn bg-gradient-to-r from-gray-500 to-gray-700 text-white px-8 py-4 rounded-xl text-xl font-bold">
+                    ← العودة للدرس
+                </button>
+            `;
+            
+            // إظهار قسم الاختبار
+            document.getElementById('quizSection').classList.remove('hidden');
+            document.getElementById('quizSection').classList.add('fade-in');
+        }
+        
+        function checkSentenceAnswer(selectedWord, isCorrect) {
+            const resultDiv = document.getElementById('quizResult');
+            
+            if (isCorrect) {
+                resultDiv.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl text-xl font-bold">
+                        🎉 ممتاز! الإجابة الصحيحة هي "${selectedWord}"
+                    </div>
+                `;
+                resultDiv.classList.remove('hidden');
+                createConfetti();
+                playCelebrationSound();
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl text-xl font-bold">
+                        😊 حاول مرة أخرى! الإجابة الصحيحة هي "بيت"
+                    </div>
+                `;
+                resultDiv.classList.remove('hidden');
+            }
+        }
+        
+        function goBackToSentences() {
+            document.getElementById('quizSection').classList.add('hidden');
+            document.getElementById('sentencesLesson').classList.remove('hidden');
+            document.getElementById('sentencesLesson').classList.add('fade-in');
+        }
+        
+        // تأثيرات تفاعلية إضافية
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحميل الأصوات العربية
+            if ('speechSynthesis' in window) {
+                // انتظار تحميل الأصوات
+                speechSynthesis.onvoiceschanged = function() {
+                    const voices = speechSynthesis.getVoices();
+                    console.log('الأصوات المتاحة:', voices.filter(voice => voice.lang.includes('ar')));
+                };
+                
+                // تشغيل صوت ترحيبي
+                setTimeout(() => {
+                    const welcomeMsg = new SpeechSynthesisUtterance('أهلاً وسهلاً في درس لغتي الجميلة');
+                    welcomeMsg.lang = 'ar-SA';
+                    welcomeMsg.rate = 0.8;
+                    welcomeMsg.volume = 0.7;
+                    
+                    const voices = speechSynthesis.getVoices();
+                    const arabicVoice = voices.find(voice => voice.lang.includes('ar'));
+                    if (arabicVoice) {
+                        welcomeMsg.voice = arabicVoice;
+                    }
+                    
+                    speechSynthesis.speak(welcomeMsg);
+                }, 1000);
+            }
+            
+            // إضافة تأثيرات الحركة للعناصر
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('slide-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // مراقبة العناصر للتأثيرات
+            document.querySelectorAll('.letter-card, .interactive-btn').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a3d982c0b4ea75',t:'MTc1NDM3MTI3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
